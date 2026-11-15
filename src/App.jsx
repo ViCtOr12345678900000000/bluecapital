@@ -6,6 +6,7 @@ import BlobSection from './components/BlobSection';
 import Projects from './components/Projects';
 import News from './pages/News';
 import About from './pages/About';
+import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
 
@@ -43,8 +44,9 @@ export default function App() {
           <Route path="/news" element={<News />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="*" element={<Home />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
       </div>

@@ -59,7 +59,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-10">
-          <Link to="/#portfolio" className={linkClass}>PORTFOLIO</Link>
+          <NavLink to="/portfolio" className={linkClass}>PORTFOLIO</NavLink>
           <NavLink to="/contact" className={linkClass}>CONTACT</NavLink>
         </div>
       </nav>
@@ -108,7 +108,9 @@ export default function Navbar() {
             {pathname === '/about' ? '← BACK HOME' : 'ABOUT →'}
           </NavLink>
 
-          <Link to="/#portfolio" className={mobileLinkClass}>PORTFOLIO</Link>
+            <NavLink to={pathname === '/portfolio' ? '/' : '/portfolio'} className={mobileLinkClass}>
+                      {pathname === '/portfolio' ? '← BACK HOME' : 'PORTFOLIO'}
+            </NavLink>
 
           <NavLink to={pathname === '/projects' ? '/' : '/projects'} className={mobileLinkClass}>
             {pathname === '/projects' ? '← BACK HOME' : 'PROJECTS →'}

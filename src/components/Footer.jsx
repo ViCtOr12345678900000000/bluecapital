@@ -1,16 +1,13 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 export default function Footer() {
-  const { pathname, hash } = useLocation();
+  const { pathname } = useLocation();
 
   // Active = orange, inactive = white
   const navClass = ({ isActive }) =>
     isActive
       ? 'text-[#e86a3a]'
       : 'text-white hover:text-white/70 transition';
-
-  // Only PORTFOLIO is still a hash — CONTACT is now a real page
-  const isPortfolioActive = pathname === '/' && hash === '#portfolio';
 
   return (
     <footer className="bg-black text-white">
@@ -43,12 +40,7 @@ export default function Footer() {
             <NavLink to="/news" className={navClass}>NEWS</NavLink>
             <NavLink to="/about" className={navClass}>ABOUT</NavLink>
             <NavLink to="/projects" className={navClass}>PROJECTS</NavLink>
-            <Link
-              to="/#portfolio"
-              className={isPortfolioActive ? 'text-[#e86a3a]' : 'text-white hover:text-white/70 transition'}
-            >
-              PORTFOLIO
-            </Link>
+            <NavLink to="/portfolio" className={navClass}>PORTFOLIO</NavLink>
             <NavLink to="/contact" className={navClass}>CONTACT</NavLink>
           </nav>
 
