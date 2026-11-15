@@ -23,32 +23,17 @@ export default function Navbar() {
 
   const isSubPage = pathname === '/news' || pathname === '/projects' || pathname === '/about';
 
-  // Top pill style — white + back arrow when active
-  const pill = (isActive) =>
-    `flex items-center gap-2 rounded-full px-5 py-2 text-[11px] font-bold tracking-[0.25em] transition-all duration-300 ${
-      isActive
-        ? 'bg-white text-black'
-        : 'border border-white/30 bg-black text-white hover:border-white hover:bg-white hover:text-black'
-    }`;
-
   return (
     <header className="fixed inset-x-0 top-0 z-[90]">
 
-      {/* ===== TOP PILLS — md + lg — ABOUT + NEWS + PROJECTS centered on top ===== */}
-      <div className="hidden md:flex items-center justify-center gap-3 bg-black pt-3 pb-1">
-        {/* PROJECTS — FIXED: active pill now links to / */}
-        <Link to={pathname === '/projects' ? '/' : '/projects'} className={pill(pathname === '/projects')}>
-          {pathname === '/projects' ? (
-            <><span className="text-[14px] leading-none">←</span> BACK HOME</>
-          ) : <>PROJECTS</>}
-        </Link>
-      </div>
-
-      {/* ===== DESKTOP NAVBAR ===== */}
-      <nav className="relative mx-auto hidden h-[72px] max-w-[1600px] items-center justify-between bg-black border-b border-white/10 px-6 lg:px-10 md:flex">
-        <div className="flex items-center gap-10">
+      {/* ===== DESKTOP NAVBAR — LINKS JUSTIFY-BETWEEN AGAIN ===== */}
+      <nav className="relative mx-auto hidden h-[72px] max-w-[1600px] items-center bg-black border-b border-white/10 px-6 lg:px-10 md:flex">
+        {/* All 4 links spread edge-to-edge */}
+        <div className="flex w-full items-center justify-between">
           <NavLink to="/news" className={linkClass}>NEWS</NavLink>
           <NavLink to="/about" className={linkClass}>ABOUT</NavLink>
+          <NavLink to="/portfolio" className={linkClass}>PORTFOLIO</NavLink>
+          <NavLink to="/contact" className={linkClass}>CONTACT</NavLink>
         </div>
 
         {/* CENTER LOGO — true center, appears on scroll */}
@@ -56,11 +41,6 @@ export default function Navbar() {
           <Link to="/" className="pointer-events-auto font-['Archivo_Black'] text-[clamp(10px,1.1vw,14px)] text-white">
             BLUE CAPITAL HORIZON
           </Link>
-        </div>
-
-        <div className="flex items-center gap-10">
-          <NavLink to="/portfolio" className={linkClass}>PORTFOLIO</NavLink>
-          <NavLink to="/contact" className={linkClass}>CONTACT</NavLink>
         </div>
       </nav>
 
@@ -80,21 +60,7 @@ export default function Navbar() {
           BLUE CAPITAL HORIZON
         </Link>
 
-        {/* Mobile top-right — FIXED: hidden when menu is open */}
-        <Link
-          to={isSubPage ? '/' : '/projects'}
-          aria-hidden={menuOpen}
-          tabIndex={menuOpen ? -1 : 0}
-          className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-bold tracking-[0.15em] transition-all duration-300 ${
-            menuOpen
-              ? 'pointer-events-none opacity-0'
-              : isSubPage
-                ? 'bg-white text-black'
-                : 'border border-white/30 text-white'
-          }`}
-        >
-          {isSubPage ? <><span className="text-[13px] leading-none">←</span> BACK</> : <>PROJECTS</>}
-        </Link>
+
       </nav>
 
       {/* ===== MOBILE DROPDOWN ===== */}
@@ -108,9 +74,9 @@ export default function Navbar() {
             {pathname === '/about' ? '← BACK HOME' : 'ABOUT →'}
           </NavLink>
 
-            <NavLink to={pathname === '/portfolio' ? '/' : '/portfolio'} className={mobileLinkClass}>
-                      {pathname === '/portfolio' ? '← BACK HOME' : 'PORTFOLIO →'}
-            </NavLink>
+          <NavLink to={pathname === '/portfolio' ? '/' : '/portfolio'} className={mobileLinkClass}>
+            {pathname === '/portfolio' ? '← BACK HOME' : 'PORTFOLIO →'}
+          </NavLink>
 
           <NavLink to={pathname === '/projects' ? '/' : '/projects'} className={mobileLinkClass}>
             {pathname === '/projects' ? '← BACK HOME' : 'PROJECTS →'}
