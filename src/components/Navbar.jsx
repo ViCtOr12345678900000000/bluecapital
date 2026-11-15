@@ -109,7 +109,9 @@ export default function Navbar() {
           <NavLink to="/projects" className={mobileLinkClass}>
             {pathname === '/projects' ? '← BACK HOME' : 'PROJECTS →'}
           </NavLink>
-          <Link to="/#contact" className={mobileLinkClass}>CONTACT</Link>
+          <NavLink to="/contact" className={mobileLinkClass}>
+            {pathname === '/contact' ? '← BACK HOME' : 'CONTACT →'}
+          </NavLink>
           <p className="mt-5 font-['Playfair_Display'] text-[16px] italic text-white/60">
             Investing in deep science for a radically better future.
           </p>
