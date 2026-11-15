@@ -109,7 +109,7 @@ export default function Navbar() {
           </NavLink>
 
             <NavLink to={pathname === '/portfolio' ? '/' : '/portfolio'} className={mobileLinkClass}>
-                      {pathname === '/portfolio' ? '← BACK HOME' : 'PORTFOLIO'}
+                      {pathname === '/portfolio' ? '← BACK HOME' : 'PORTFOLIO →'}
             </NavLink>
 
           <NavLink to={pathname === '/projects' ? '/' : '/projects'} className={mobileLinkClass}>
