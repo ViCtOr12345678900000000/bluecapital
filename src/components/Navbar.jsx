@@ -95,28 +95,32 @@ export default function Navbar() {
         </Link>
       </nav>
 
-      {/* ===== MOBILE DROPDOWN ===== */}
-      <div className={`overflow-hidden bg-black transition-all duration-500 md:hidden ${menuOpen ? 'max-h-[480px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="px-5 pb-6 pt-2">
-          <NavLink to="/news" className={mobileLinkClass}>
-            {pathname === '/news' ? '← BACK HOME' : 'NEWS →'}
-          </NavLink>
-          {/* FIXED: was "/#about" */}
-          <NavLink to="/about" className={mobileLinkClass}>
-            {pathname === '/about' ? '← BACK HOME' : 'ABOUT →'}
-          </NavLink>
-          <Link to="/#portfolio" className={mobileLinkClass}>PORTFOLIO</Link>
-          <NavLink to="/projects" className={mobileLinkClass}>
-            {pathname === '/projects' ? '← BACK HOME' : 'PROJECTS →'}
-          </NavLink>
-          <NavLink to="/contact" className={mobileLinkClass}>
-            {pathname === '/contact' ? '← BACK HOME' : 'CONTACT →'}
-          </NavLink>
-          <p className="mt-5 font-['Playfair_Display'] text-[16px] italic text-white/60">
-            Investing in deep science for a radically better future.
-          </p>
-        </div>
-      </div>
+          {/* ===== MOBILE DROPDOWN ===== */}
+          <div className={`overflow-hidden bg-black transition-all duration-500 md:hidden ${menuOpen ? 'max-h-[480px] opacity-100' : 'max-h-0 opacity-0'}`}>
+              <div className="px-5 pb-6 pt-2">
+                  <NavLink to={pathname === '/news' ? '/' : '/news'} className={mobileLinkClass}>
+                      {pathname === '/news' ? '← BACK HOME' : 'NEWS →'}
+                  </NavLink>
+
+                  <NavLink to={pathname === '/about' ? '/' : '/about'} className={mobileLinkClass}>
+                      {pathname === '/about' ? '← BACK HOME' : 'ABOUT →'}
+                  </NavLink>
+
+                  <Link to="/#portfolio" className={mobileLinkClass}>PORTFOLIO</Link>
+
+                  <NavLink to={pathname === '/projects' ? '/' : '/projects'} className={mobileLinkClass}>
+                      {pathname === '/projects' ? '← BACK HOME' : 'PROJECTS →'}
+                  </NavLink>
+
+                  <NavLink to={pathname === '/contact' ? '/' : '/contact'} className={mobileLinkClass}>
+                      {pathname === '/contact' ? '← BACK HOME' : 'CONTACT →'}
+                  </NavLink>
+
+                  <p className="mt-5 font-['Playfair_Display'] text-[16px] italic text-white/60">
+                      Investing in deep science for a radically better future.
+                  </p>
+              </div>
+          </div>
     </header>
   );
 }
