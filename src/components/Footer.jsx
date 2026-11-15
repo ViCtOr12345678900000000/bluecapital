@@ -52,12 +52,12 @@ export default function Footer() {
             >
               PORTFOLIO
             </Link>
-            <Link
+            <NavLink
               to="/#contact"
               className={isContactActive ? 'text-[#e86a3a]' : 'text-white hover:text-white/70 transition'}
             >
               CONTACT
-            </Link>
+            </NavLink>
           </nav>
           <a
             href="https://linkedin.com/company/blue-capital-horizon"

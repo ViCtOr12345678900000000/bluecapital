@@ -64,7 +64,7 @@ export default function Navbar() {
         <div className="flex items-center gap-10">
           {/* These are sections on HOME, so link to / then scroll to id */}
           <Link to="/#portfolio" className={linkClass}>PORTFOLIO</Link>
-          <Link to="/#contact" className={linkClass}>CONTACT</Link>
+          <NavLink to="/contact" className={linkClass}>CONTACT</NavLink>
         </div>
       </nav>
 
