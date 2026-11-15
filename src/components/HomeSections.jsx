@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
-import heroVideo from '../assets/BlueCapital.mp4'; // <-- your file in assets
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import heroVideo from '../assets/BlueCapital.mp4';
 
 const SLIDES = [
-  { tag: 'Carma', title: 'Carma Therapeutics Enters Into Definitive Merger', img: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1000&q=80' },
-  { tag: 'Nourish', title: 'A delicious breakthrough', img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1000&q=80' },
-  { tag: 'Cortical Labs', title: 'Synthetic biology and the new frontier in AI', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1000&q=80' },
-  { tag: 'Notpla', title: 'A prize winning disappearing act', img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1000&q=80' },
+  { slug: 'helixgen', tag: 'HelixGen', title: 'HelixGen Cures First 12 Sickle Cell Patients With Single-Dose Gene Edit', img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1000&q=80' },
+  { slug: 'cortical-labs', tag: 'Cortical Labs', title: 'Synthetic biology and the new frontier in AI', img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000&q=80' },
+  { slug: 'notpla', tag: 'Notpla', title: 'A prize winning disappearing act', img: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=1000&q=80' },
+  { slug: 'terracarbon', tag: 'TerraCarbon', title: '36,000 Tonnes Of CO2 Removed A Year', img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1600&q=80' },
 ];
 
 export default function HomeSections() {
@@ -65,12 +66,11 @@ export default function HomeSections() {
         <div className={`relative aspect-[16/9] w-full max-w-[880px] max-h-[480px] shrink-0 origin-top overflow-hidden bg-[#111] transition-all duration-700 ease-out ${videoProgress > 0.5 ? 'scale-100 rounded-[8px] opacity-100' : 'scale-[0.85] rounded-[20px] opacity-70'}`}>
           <video className="block h-full w-full object-cover" autoPlay muted loop playsInline src={heroVideo} />
           <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-gradient-to-t from-black/70 to-transparent px-3.5 py-2.5 text-[12px] text-white/80">
-
           </div>
         </div>
       </section>
 
-      {/* CAROUSEL */}
+      {/* CAROUSEL — READ ARTICLE NOW LINKS TO NEWS */}
       <section
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
@@ -98,7 +98,13 @@ export default function HomeSections() {
                   <div className="absolute inset-0 flex flex-col items-center justify-center px-10 text-center">
                     <p className="mb-2.5 text-[12px] text-white/80">{s.tag}</p>
                     <h3 className="m-0 font-['Playfair_Display'] text-[clamp(20px,3vw,32px)] italic leading-[1.1] text-white">{s.title}</h3>
-                    <span className="mt-5 border-b border-white/50 pb-1 text-[11px] font-semibold tracking-[0.25em] text-white">READ ARTICLE</span>
+                    <Link
+                      to={`/news#${s.slug}`}
+                      onClick={(e) => e.stopPropagation()}
+                      className="mt-5 border-b border-white/50 pb-1 text-[11px] font-semibold tracking-[0.25em] text-white hover:text-[#e86a3a] hover:border-[#e86a3a] transition"
+                    >
+                      READ ARTICLE
+                    </Link>
                   </div>
                 )}
               </div>

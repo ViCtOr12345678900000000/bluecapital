@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const NEWS = [
   {
     id: 1,
+    slug: 'fund-iii',
     tag: 'FUNDING',
     title: 'Blue Capital Horizon Closes $250M Deep Science Fund III',
     date: 'November 12, 2026',
     author: 'By Blue Capital Horizon Team',
     readTime: '6 min read',
-    // NEW PICTURE — not in Projects
     img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80',
     excerpt: 'Our largest fund yet — backing founders solving climate, health, and inequality.',
     quote: 'We don’t invest in trends. We invest in problems that must be solved.',
@@ -31,6 +31,7 @@ const NEWS = [
   },
   {
     id: 2,
+    slug: 'helixgen',
     tag: 'PORTFOLIO',
     title: 'HelixGen Cures First 12 Sickle Cell Patients With Single-Dose Gene Edit',
     date: 'October 28, 2026',
@@ -57,6 +58,7 @@ const NEWS = [
   },
   {
     id: 3,
+    slug: 'terracarbon',
     tag: 'CLIMATE',
     title: 'TerraCarbon Opens Second Plant — 36,000 Tonnes Of CO2 Removed A Year',
     date: 'October 14, 2026',
@@ -82,6 +84,7 @@ const NEWS = [
   },
   {
     id: 4,
+    slug: 'cortical-labs',
     tag: 'AI',
     title: 'Cortical Labs Launches CL1 — The First Biological Computer',
     date: 'September 30, 2026',
@@ -107,6 +110,7 @@ const NEWS = [
   },
   {
     id: 5,
+    slug: 'equalwealth',
     tag: 'AFRICA',
     title: 'EqualWealth Hits 480,000 Users Across Africa',
     date: 'September 10, 2026',
@@ -131,6 +135,7 @@ const NEWS = [
   },
   {
     id: 6,
+    slug: 'notpla',
     tag: 'MATERIALS',
     title: 'Notpla Ocean: 12 Million Plastic Units Avoided With Seaweed Packaging',
     date: 'August 22, 2026',
@@ -155,6 +160,7 @@ const NEWS = [
   },
   {
     id: 7,
+    slug: 'orbital-solar',
     tag: 'SPACE',
     title: 'Orbital Solar Beams Power From Space To Earth — First Time Ever',
     date: 'August 05, 2026',
@@ -181,8 +187,18 @@ const NEWS = [
 
 export default function News() {
   const [selected, setSelected] = useState(null);
+  const { hash } = useLocation();
 
-  /* ============ ARTICLE PAGE — Horizons style ============ */
+  // If you arrive via /news#cortical-labs from the carousel, open that article
+  useEffect(() => {
+    if (hash) {
+      const slug = hash.replace('#', '');
+      const found = NEWS.find((n) => n.slug === slug);
+      if (found) setSelected(found);
+    }
+  }, [hash]);
+
+  /* ============ ARTICLE PAGE ============ */
   if (selected) {
     return (
       <main className="bg-black text-white">
@@ -196,7 +212,6 @@ export default function News() {
           </p>
         </section>
 
-        {/* HERO IMAGE + TITLE ON TOP — like Horizons */}
         <section className="mx-auto max-w-[1400px] px-5 pt-10 md:px-10">
           <div className="relative overflow-hidden rounded-[16px]">
             <img src={selected.img} alt={selected.title} className="h-[420px] w-full object-cover md:h-[520px]" />
@@ -213,7 +228,6 @@ export default function News() {
           </div>
         </section>
 
-        {/* LONG ARTICLE CONTENT */}
         <section className="mx-auto max-w-[900px] px-5 pb-24 pt-12 md:px-10">
           <p className="m-0 font-['Playfair_Display'] text-[clamp(20px,2.5vw,26px)] italic leading-[1.4] text-white/90">
             {selected.excerpt}
@@ -225,12 +239,10 @@ export default function News() {
             </p>
           ))}
 
-          {/* Quote block */}
           <blockquote className="my-10 border-l-2 border-white pl-6">
             <p className="m-0 font-['Playfair_Display'] text-[clamp(22px,3vw,32px)] italic leading-[1.3]">“{selected.quote}”</p>
           </blockquote>
 
-          {/* Key points */}
           <h3 className="m-0 mt-10 text-[11px] font-bold tracking-[0.25em] text-white/50">KEY POINTS</h3>
           <ul className="m-0 mt-4 list-none space-y-3 p-0">
             {selected.points.map((pt, i) => (
@@ -264,7 +276,7 @@ export default function News() {
       <section className="mx-auto max-w-[1400px] px-5 pb-24 md:px-10">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {NEWS.map((n, i) => (
-            <article key={n.id} className={`group cursor-pointer overflow-hidden rounded-[16px] border border-white/10 bg-[#111] transition-all duration-500 hover:-translate-y-1.5 hover:border-white/30 ${i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''}`} onClick={() => setSelected(n)}>
+            <article key={n.id} id={n.slug} className={`group cursor-pointer scroll-mt-[120px] overflow-hidden rounded-[16px] border border-white/10 bg-[#111] transition-all duration-500 hover:-translate-y-1.5 hover:border-white/30 ${i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''}`} onClick={() => setSelected(n)}>
               <div className="relative h-[220px] overflow-hidden">
                 <img src={n.img} alt={n.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <span className="absolute left-4 top-4 rounded-full bg-black/70 px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-white backdrop-blur">{n.tag}</span>
