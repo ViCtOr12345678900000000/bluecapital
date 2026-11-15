@@ -18,7 +18,7 @@ export default function About() {
           ['250M+', 'Fund III'],
           ['30+', 'Companies backed'],
           ['480K', 'EqualWealth users'],
-          ['36K t', 'CO2 removed / year'],
+          ['36K', 'CO2 removed / year'],
         ].map(([num, label]) => (
           <div key={label} className="bg-black p-6">
             <p className="m-0 font-['Archivo_Black'] text-[32px] md:text-[40px]">{num}</p>
