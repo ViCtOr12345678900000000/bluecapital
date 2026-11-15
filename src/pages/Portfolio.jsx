@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { Search } from 'lucide-react';
 
 const COMPANIES = [
   { name: 'HelixGen', desc: 'One-time CRISPR therapy curing sickle cell disease. 12 patients, 0 pain crises in Phase 1.', location: 'Lagos / Boston', year: 2024, tag: 'BIOTECH' },
@@ -86,7 +87,7 @@ export default function Portfolio() {
         {/* ===== SEARCH + FILTERS — like in your video ===== */}
         <div className="mt-12 flex flex-col gap-3 md:flex-row md:items-center">
           <div className="flex flex-1 items-center gap-2 border border-white/40 bg-black/40 px-4 py-3 backdrop-blur">
-            <span className="text-white/60">🔍</span>
+            <span className="text-white/60"><Search size={16}/></span>
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
