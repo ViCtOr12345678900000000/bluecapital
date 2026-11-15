@@ -16,10 +16,26 @@ export default function HomeSections() {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const videoRef = useRef(null);
+  const heroVideoRef = useRef(null);
 
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 50);
     return () => clearTimeout(t);
+  }, []);
+
+  // ===== VIDEO LOOP — guaranteed =====
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    const play = () => video.play().catch(() => {});
+    play();
+    // If it ever ends, restart it manually
+    const onEnded = () => { video.currentTime = 0; play(); };
+    video.addEventListener('ended', onEnded);
+    return () => video.removeEventListener('ended', onEnded);
   }, []);
 
   useEffect(() => {
@@ -61,10 +77,19 @@ export default function HomeSections() {
         </p>
       </section>
 
-      {/* VIDEO */}
+      {/* VIDEO — LOOPS FOREVER */}
       <section ref={videoRef} className="flex justify-center overflow-hidden bg-black px-3 pt-6 md:px-5 md:pt-8">
         <div className={`relative aspect-[16/9] w-full max-w-[880px] max-h-[480px] shrink-0 origin-top overflow-hidden bg-[#111] transition-all duration-700 ease-out ${videoProgress > 0.5 ? 'scale-100 rounded-[8px] opacity-100' : 'scale-[0.85] rounded-[20px] opacity-70'}`}>
-          <video className="block h-full w-full object-cover" autoPlay muted loop playsInline src={heroVideo} />
+          <video
+            ref={heroVideoRef}
+            className="block h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            src={heroVideo}
+          />
           <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-gradient-to-t from-black/70 to-transparent px-3.5 py-2.5 text-[12px] text-white/80">
           </div>
         </div>
