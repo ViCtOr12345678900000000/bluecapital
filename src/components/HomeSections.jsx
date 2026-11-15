@@ -65,9 +65,7 @@ export default function HomeSections() {
         <div className={`relative aspect-[16/9] w-full max-w-[880px] max-h-[480px] shrink-0 origin-top overflow-hidden bg-[#111] transition-all duration-700 ease-out ${videoProgress > 0.5 ? 'scale-100 rounded-[8px] opacity-100' : 'scale-[0.85] rounded-[20px] opacity-70'}`}>
           <video className="block h-full w-full object-cover" autoPlay muted loop playsInline src={heroVideo} />
           <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-gradient-to-t from-black/70 to-transparent px-3.5 py-2.5 text-[12px] text-white/80">
-            <span className="flex items-center gap-1.5"><Play size={12} className="fill-white" /> 0:19 / 2:36</span>
-            <span className="font-['Playfair_Display'] text-[14px] italic text-white">a symbol of possibility,</span>
-            <span>YouTube</span>
+
           </div>
         </div>
       </section>
