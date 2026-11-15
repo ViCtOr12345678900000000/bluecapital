@@ -1,18 +1,16 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Users } from 'lucide-react';
 
 export default function Footer() {
   const { pathname, hash } = useLocation();
 
-  // Active = orange like HOME was, inactive = white
+  // Active = orange, inactive = white
   const navClass = ({ isActive }) =>
     isActive
       ? 'text-[#e86a3a]'
       : 'text-white hover:text-white/70 transition';
 
-  // For #portfolio / #contact — they are on Home, so check hash
+  // Only PORTFOLIO is still a hash — CONTACT is now a real page
   const isPortfolioActive = pathname === '/' && hash === '#portfolio';
-  const isContactActive = pathname === '/' && hash === '#contact';
 
   return (
     <footer className="bg-black text-white">
@@ -37,39 +35,39 @@ export default function Footer() {
           </div>
         </div>
         <div className="h-px w-full bg-white/70" />
-        <div className="flex items-center justify-between py-5">
-          <nav className="flex flex-1 items-center justify-between pr-6 md:pr-10 text-[11px] md:text-[12px] font-semibold tracking-[0.08em]">
-            {/* HOME — active only on exact / with no hash */}
+
+        {/* BOTTOM NAV — mobile fixed */}
+        <div className="flex items-start justify-between gap-4 py-5">
+          <nav className="flex flex-1 flex-wrap items-center gap-x-5 gap-y-3 pr-4 text-[10px] leading-[1.4] font-semibold tracking-[0.08em] sm:gap-x-6 sm:text-[11px] md:flex-nowrap md:justify-between md:gap-0 md:pr-10 md:text-[12px]">
             <NavLink to="/" end className={navClass}>HOME</NavLink>
             <NavLink to="/news" className={navClass}>NEWS</NavLink>
             <NavLink to="/about" className={navClass}>ABOUT</NavLink>
             <NavLink to="/projects" className={navClass}>PROJECTS</NavLink>
-
-            {/* PORTFOLIO / CONTACT — active when hash matches */}
             <Link
               to="/#portfolio"
               className={isPortfolioActive ? 'text-[#e86a3a]' : 'text-white hover:text-white/70 transition'}
             >
               PORTFOLIO
             </Link>
-            <NavLink
-              to="/#contact"
-              className={isContactActive ? 'text-[#e86a3a]' : 'text-white hover:text-white/70 transition'}
-            >
-              CONTACT
-            </NavLink>
+            <NavLink to="/contact" className={navClass}>CONTACT</NavLink>
           </nav>
+
+          {/* ===== YOUR IMAGE — NO MORE LUCIDE ===== */}
           <a
             href="https://linkedin.com/company/blue-capital-horizon"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[4px] bg-[#c8d6d0] text-black hover:bg-white transition"
+            className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-[4px] bg-[#c8d6d0] hover:bg-white transition"
           >
-            {/* KEPT your Users icon — not changed to Linkedin */}
-            <Users size={18} className="fill-black" />
+            <img
+              src="https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjk4Mi1kMS0xMC5wbmc.png"
+              alt="LinkedIn"
+              className="h-[18px] w-[18px] object-contain"
+            />
           </a>
         </div>
+
         <div className="h-px w-full bg-white/70" />
         <div className="h-6" />
       </div>
