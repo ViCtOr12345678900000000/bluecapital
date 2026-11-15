@@ -50,7 +50,7 @@ export default function HomeSections() {
 
       {/* HERO */}
       <section className="overflow-hidden bg-black px-5 pb-[40px] pt-[100px] md:px-10 md:pb-[20px] md:pt-[170px]">
-        <h1 className={`m-0 block pt-2 font-['Archivo_Black'] leading-[1.05] tracking-[-0.02em] text-white transition-all duration-1000 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} whitespace-normal text-[9.5vw] md:whitespace-nowrap md:text-[6.5vw]`}>
+        <h1 className={`hidden md:block m-0 block pt-2 font-['Archivo_Black'] leading-[1.05] tracking-[-0.02em] text-white transition-all duration-1000 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} whitespace-normal text-[9.5vw] md:whitespace-nowrap md:text-[6.5vw]`}>
           BLUE CAPITAL HORIZON
         </h1>
         <p className={`mb-0 mt-[40px] max-w-[1100px] font-['Playfair_Display'] text-[clamp(26px,4.2vw,58px)] font-bold italic leading-[1.15] text-white transition-all delay-200 duration-1000 md:mt-[70px] ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
