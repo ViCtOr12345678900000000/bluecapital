@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import HomeSections from './components/HomeSections';
 import BlobSection from './components/BlobSection';
@@ -49,6 +50,7 @@ export default function App() {
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
+        <Analytics />
       </div>
     </BrowserRouter>
   );
